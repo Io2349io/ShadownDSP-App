@@ -1,20 +1,26 @@
-# LightningDSP
 
-Android DSP application with distinct **LightningDSP** root and
-**RootlessLightningDSP** capture-based builds. The root flavor uses the companion
-[LightningDSP module](https://github.com/zahahah/LightningDSP); rootless
+
+Ecco il testo riscritto come se fosse **ShadowDSP**:
+
+---
+
+# ShadowDSP
+
+Android DSP application with distinct **ShadowDSP** root and
+**RootlessShadowDSP** capture-based builds. The root flavor uses the companion
+[ShadowDSP module](https://github.com/zahahah/ShadowDSP); rootless
 continues to use the bundled upstream DSP implementation.
 
-LightningDSP is the rebranded name for this maintained app integration, inspired
+ShadowDSP is the rebranded name for this maintained app integration, inspired
 by the original JamesDSP project. We retain the original authorship, contributor
 credits, upstream references and license notices; the new name does not replace
 that history.
 
 The current root release is **1.7** (root versionCode **78**). The root app
-uses package ID `com.lightning.dsp`; the rootless package remains unchanged.
+uses package ID `com.shadow.dsp`; the rootless package remains unchanged.
 When the companion module is explicitly flashed, it removes the old `james.dsp`
-package before installing LightningDSP. The old package's private data is not
-migrated. This is separate from updating `com.lightning.dsp`: a signature
+package before installing ShadowDSP. The old package's private data is not
+migrated. This is separate from updating `com.shadow.dsp`: a signature
 mismatch there still requires the existing volume-key confirmation and
 best-effort backup flow. See [the compatibility inventory](REBRAND-COMPATIBILITY.md).
 This is not a claim that the local source is newer than upstream ThePBone code.
@@ -31,13 +37,13 @@ restart Audio HAL/audioserver or automatically execute recovery scripts.
 ## Presets and effect files
 
 The app keeps its libraries under its Android app-specific external files directory,
-usually `Android/data/com.lightning.dsp/files` for the root app. `Presets` contains
+usually `Android/data/com.shadow.dsp/files` for the root app. `Presets` contains
 saved or imported `.tar` presets; it is initially empty. `Convolver`, `DDC` and
 `Liveprog` contain their corresponding effect files. Use the app's **Import** action
 to add files through Android's document picker, especially on devices that restrict
 file-manager access to `Android/data`.
 
-The public `/sdcard/LightningDSP` directory copied by the module installer is a
+The public `/sdcard/ShadowDSP` directory copied by the module installer is a
 separate collection of example files, not the app's live preset library. A missing
 `Presets` subdirectory there does not establish that DSP preset loading has failed.
 
@@ -47,16 +53,16 @@ separate collection of example files, not the app's live preset library. A missi
 gain is +/-15 dB normally, +/-30 dB only after opt-in. Disabling clamps the saved
 value safely. Rootless hides the option and retains +/-15 dB.
 
-LightningDSP Volume Manager is integrated into the root app and is disabled by default on fresh installations. It offers per-app volume, mute and balance, active and recent apps, persistent order and pins, built-in streams, a floating panel, and an optional LightningDSP card. The root app does not require a separate VolumeManager installation. In the floating panel, tap the LightningDSP card icon to open its effects. Press and hold an effect name to select it, then use the slider to lower or raise its intensity.
+ShadowDSP Volume Manager is integrated into the root app and is disabled by default on fresh installations. It offers per-app volume, mute and balance, active and recent apps, persistent order and pins, built-in streams, a floating panel, and an optional ShadowDSP card. The root app does not require a separate VolumeManager installation. In the floating panel, tap the ShadowDSP card icon to open its effects. Press and hold an effect name to select it, then use the slider to lower or raise its intensity.
 
-I maintain LightningDSP as an audio pocket knife: DSP processing and practical audio controls in one app. The pre-rebrand JamesDSP 6.6 module and matching root app 1.6.17 remain in [JamesDSPManager-Classic](https://github.com/zahahah/JamesDSPManager-Classic) and [RootJamesDSP-Classic](https://github.com/zahahah/RootJamesDSP-Classic). The current companion module is [LightningDSP](https://github.com/zahahah/LightningDSP). Original contributors and license obligations remain credited.
+I maintain ShadowDSP as an audio pocket knife: DSP processing and practical audio controls in one app. The pre-rebrand JamesDSP 6.6 module and matching root app 1.6.17 remain in [JamesDSPManager-Classic](https://github.com/zahahah/JamesDSPManager-Classic) and [RootJamesDSP-Classic](https://github.com/zahahah/RootJamesDSP-Classic). The current companion module is [ShadowDSP](https://github.com/zahahah/ShadowDSP). Original contributors and license obligations remain credited.
 
 ## Optional Disable Audio Focus
 
 The root app includes an opt-in **Disable App Audio Focus (Requires Xposed)**
 switch in Volume Manager settings. To use it, install a compatible Vector/Xposed
-framework, allow the LightningDSP app as a module with **System Framework** (`android`)
-scope, and restart the framework as required by that manager. Grant LightningDSP
+framework, allow the ShadowDSP app as a module with **System Framework** (`android`)
+scope, and restart the framework as required by that manager. Grant ShadowDSP
 root access. The switch remains unavailable until the app verifies a PID-bound
 acknowledgement from its hook in the current `system_server` process. No system
 file is changed: the switch writes a volatile Android property, which the hook
@@ -64,8 +70,8 @@ checks on each focus request.
 The change applies to new focus requests; an app that already paused after a
 focus loss may need playback restarted.
 
-The hook leaves voice-communication focus requests unchanged. The switch is off by
-default. Hook detection and a verified property write do not prove that every
+The hook leaves voice-communication focus requests unchanged. The switch is off
+by default. Hook detection and a verified property write do not prove that every
 media app will continue playing.
 Turn it off to restore normal handling for subsequent requests. An opted-in setting
 is restored when the app starts after a reboot. The setting is intentionally not
@@ -76,7 +82,7 @@ is packaged in the root APK.
 
 ## Full backups
 
-Manual and scheduled full backups include LightningDSP Volume Manager's per-app
+Manual and scheduled full backups include ShadowDSP Volume Manager's per-app
 volume, mute and balance rules, hardware-button exclusions, app order and pins,
 hidden apps, stream visibility and order, effect display order, panel theme,
 and enable/startup preferences. DSP effect values remain in the existing DSP
@@ -112,12 +118,12 @@ See [root build notes](BUILD_ROOT.md) and [native integration](NATIVE-CONTROL-V4
 
 ### App implementation
 
-- Lightning Zahah (@zahahah)
+- Shadow Zahah (@zahahah)
 - ThePBone (@thepbone)
 
 ### Core library implementation
 
-- Lightning Zahah (@zahahah)
+- Shadow Zahah (@zahahah)
 - James Fung (@james34602)
 
 ## Upstream and licensing
@@ -126,4 +132,4 @@ This is a community fork of [ThePBone's RootlessJamesDSP](https://github.com/The
 inspired by and using [JamesDSP by James Fung (james34602)](https://github.com/james34602/JamesDSPManager).
 Original authorship, vendored submodule URLs, DSP APIs and [license](LICENSE) remain unchanged. Historical
 screenshots/changelogs and upstream URLs are retained for provenance, not as
-current LightningDSP artwork or release claims.
+current ShadowDSP artwork or release claims.
